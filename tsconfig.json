@@ -1,0 +1,22 @@
+{
+  // N.B. Vite needs the full path to tsconfig.json, it does not look for it
+  // at NPM package roots like TSC does.
+  "extends": "@darkobits/tsx/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    // "module": "ESNext",
+    "types": [
+      "node",
+      "vite/client",
+      "unplugin-icons/types/react",
+      "vite-plugin-pwa/client",
+      "vite-plugin-svgr/client"
+    ]
+  },
+  "include": [
+    "src",
+    "vite.config.ts",
+  ]
+}

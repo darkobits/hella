@@ -1,0 +1,26 @@
+{
+  "name": "hella-scripts",
+  "private": true,
+  "license": "WTFPL",
+  "author": "darkobits",
+  "type": "module",
+  "bin": {
+    "serve-ngrok": "./dist/bin/serve-ngrok.js"
+  },
+  "scripts": {
+    "prepare": "nr prepare"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.18.1",
+    "get-port": "^5.1.1",
+    "ngrok": "^4.3.1",
+    "p-timeout": "^4.1.0",
+    "wait-on": "^6.0.1",
+    "which": "^2.0.2"
+  },
+  "devDependencies": {
+    "@darkobits/ts": "^0.10.7-beta.8",
+    "vitest": "^0.22.1"
+  }
+}

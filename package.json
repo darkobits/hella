@@ -1,0 +1,62 @@
+{
+  "name": "@darkobits/hella",
+  "displayName": "Hella",
+  "description": "Chic lo-fi boilerplate React app you probably haven't heard of.",
+  "private": true,
+  "version": "0.1.0",
+  "license": "WTFPL",
+  "author": "darkobits",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkobits/hella.git"
+  },
+  "scripts": {
+    "build": "nr build",
+    "start": "nr start",
+    "prepare": "nr prepare"
+  },
+  "dependencies": {
+    "@darkobits/react-lazy-named": "^0.1.1",
+    "@darkobits/sleep": "^2.1.3",
+    "@tanstack/react-query": "^4.24.4",
+    "@tanstack/react-query-devtools": "^4.24.4",
+    "axios": "^1.2.6",
+    "bootstrap": "^5.2.3",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.29.3",
+    "emittery": "^1.0.1",
+    "jquery": "^3.6.3",
+    "p-retry": "^5.1.2",
+    "polished": "^4.2.2",
+    "popper.js": "^1.16.1",
+    "pretty-ms": "^8.0.0",
+    "react-bootstrap": "^2.7.0",
+    "react-error-boundary": "^3.1.4",
+    "react-hot-toast": "^2.4.0",
+    "react-image": "^4.0.3",
+    "react-number-format": "^5.1.3",
+    "react-router": "^6.8.0",
+    "react-router-dom": "^6.8.0",
+    "use-async-effect": "^2.2.7",
+    "uuid": "^9.0.0",
+    "which": "^2.0.2"
+  },
+  "devDependencies": {
+    "@darkobits/eslint-plugin": "^0.2.13",
+    "@darkobits/tsx": "^0.11.13",
+    "@darkobits/vite-plugin-favicons": "^0.3.0",
+    "@iconify/json": "^2.2.14",
+    "@svgr/core": "^6.5.1",
+    "@types/uuid": "^9.0.0",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "unplugin-icons": "^0.15.2",
+    "vite-plugin-fonts": "^0.7.0",
+    "vite-plugin-pwa": "^0.14.1",
+    "wait-on": "^6.0.1"
+  },
+  "overrides": {
+    "@vanilla-extract/vite-plugin": {
+      "vite": "^4.0.0"
+    }
+  }
+}

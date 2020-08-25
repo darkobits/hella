@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hella</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="description" content="" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- <meta name="Content-Security-Policy" content="default-src 'self'; font-src 'self' fonts.googleapis.com fonts.gstatic.com;" /> -->
+    <script>
+      // Only show the loading spinner after 500ms. This will reduce visual jank
+      // on cached reloads.
+      setTimeout(() => document.querySelector('#root > .spinner-border')?.removeAttribute('hidden'), 1000);
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+        <div class="spinner-border" role="status" hidden>
+          <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <script src="./index.tsx" type="module"></script>
+  </body>
+</html>
