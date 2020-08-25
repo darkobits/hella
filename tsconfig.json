@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/@darkobits/ts-unified/dist/config/tsconfig.json",
+  "include": ["./src"],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "jsx": "react",
+    "outDir": "dist",
+    "lib": ["DOM", "es2020"],
+    "paths": {"*": ["*", "src/*"]}
+  }
+}
