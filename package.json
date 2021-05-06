@@ -41,7 +41,7 @@
     "react-query-devtools": "^2.4.5",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.7",
-    "ua-parser-js": "^0.7.21",
+    "ua-parser-js": "^0.7.28",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
