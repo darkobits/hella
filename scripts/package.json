@@ -20,7 +20,7 @@
     "which": "^2.0.2"
   },
   "devDependencies": {
-    "@darkobits/ts": "^0.10.7-beta.8",
+    "@darkobits/ts": "^0.13.15",
     "vitest": "^0.22.1"
   }
 }
