@@ -1,5 +1,5 @@
 import { ReactQueryDevtools as Devtools } from '@tanstack/react-query-devtools';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
 
 
 /**
@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom';
  * query param is present.
  */
 export const ReactQueryDevtools = () => {
-  const [searchParams] = useSearchParams();
+  const searchParams = useSearchParams();
   const showDevtools = searchParams.get('devtools');
 
   if (showDevtools === null) return null;

@@ -1,3 +1,5 @@
+'use client';
+
 import { formatDistance } from 'date-fns';
 import React from 'react';
 

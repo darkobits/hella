@@ -1,67 +1,72 @@
-import { isMobile } from '@darkobits/tsx/lib/runtime';
+'use client';
+
 import cx from 'classnames';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { Img } from 'react-image';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
+import { isMobile } from 'react-device-detect';
 
 import ids from 'lib/hash-ids';
-import { type RouteProps } from 'routes';
 
-import classes from './Home.css';
-import headerUrl from './hella-header.png';
+import classes from './page.css';
 
-let int = 1;
 
-export const Home = ({ useRouteConfig }: RouteProps) => {
+export default function HomePage() {
+  const isDarkMode = document.querySelector('html')?.getAttribute('data-bs-theme') === 'dark';
+
   return (
     <Row>
       <Col xs="12" className="mt-3">
         {/* Jumbotron */}
-        <div className={cx(classes.jumbotron, 'bg-dark', 'p-4', 'mb-4', 'rounded')}>
+        <div
+          className={cx(
+            'p-4',
+            'mb-4',
+            'rounded',
+            isDarkMode ? 'bg-dark' : 'border shadow'
+          )}
+        >
 
           {/* Jumbotron Image & Version */}
           <div className={cx(classes.heading, 'mb-4')}>
-            <Img
-              src={headerUrl}
+            <img
+              src="/hella-header.png"
               alt="Hella"
-              className={classes.homeImg}
-              style={{
-                maxWidth: isMobile() ? '100%' : '360px'
-              }}
+              className={cx(
+                classes.homeImg,
+                !isDarkMode && classes.invert
+              )}
+              style={{ maxWidth: isMobile ? '100%' : '360px' }}
             />
             <small className="text-secondary ml-4">
-              v{import.meta.env.VERSION}{isMobile() ? 'm' : ''}
+              v{process.env.VERSION}{isMobile ? 'm' : ''}
             </small>
           </div>
 
           {/* Jumbotron Tagline */}
-          <p className={cx(!isMobile() && 'lead', 'text-sm')}>
-            {import.meta.env.DESCRIPTION}
+          <p className={cx(!isMobile && 'lead', 'text-sm')}>
+            {process.env.DESCRIPTION}
           </p>
 
-          <hr className="border-light" />
+          <hr />
 
           {/* Jumbotron Buttons */}
           <ButtonGroup className="mt-2">
             <Button
-              // @ts-ignore
+              // @ts-expect-error
               as={Link}
-              to={useRouteConfig('page1').path}
+              href="/mumblecore"
               variant="light"
-              size={isMobile() ? 'sm' : 'lg'}
+              size={isMobile ? 'sm' : 'lg'}
               className="mr-3"
             >
-              {useRouteConfig('page1').label}
+              Mumblecore
             </Button>
             <Button
               // @ts-ignore
               as={Link}
-              to={`/${ids.getFor(int += 1)}`}
+              href={`/${ids.getRandom()}`}
               variant="secondary"
-              size={isMobile() ? 'sm' : 'lg'}
+              size={isMobile ? 'sm' : 'lg'}
               className="mr-3"
             >
               Five-dollar toast
@@ -101,4 +106,4 @@ export const Home = ({ useRouteConfig }: RouteProps) => {
       </Col>
     </Row>
   );
-};
+}

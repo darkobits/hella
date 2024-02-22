@@ -1,5 +1,7 @@
 /**
- * FinnHub Securities API client.
+ * ----- FinnHub Securities API Client -----------------------------------------
+ *
+ * Used to define data-fetching functions for React Query.
  *
  * See: https://finnhub.io/docs/api
  */

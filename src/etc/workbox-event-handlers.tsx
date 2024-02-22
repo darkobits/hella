@@ -1,15 +1,22 @@
 /* eslint-disable import/no-unresolved */
+
 /**
  * ----- Workbox Event Handlers ------------------------------------------------
+ *
+ * NOTE: THIS IS NOT CURRENTLY IN USE WITH NEXT.
  *
  * This module is responsible for defining how the application should respond to
  * various service worker-related lifecycle events.
  */
 import Button from 'react-bootstrap/Button';
-import { registerSW } from 'virtual:pwa-register';
+// import { registerSW } from 'virtual:pwa-register';
 
 import { createToast } from 'lib/toasts';
 import WorkboxManager from 'lib/workbox-manager';
+
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const registerSW = (opts: any) => async (reload: boolean) => true;
 
 
 /**
@@ -114,6 +121,6 @@ workbox.on('offline-ready', () => {
 
 // ----- Initialization --------------------------------------------------------
 
-if (import.meta.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   void workbox.register();
 }

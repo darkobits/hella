@@ -1,6 +1,7 @@
+'use client';
+
 import { formatDistance } from 'date-fns';
 import React from 'react';
-import getBuildTime from 'virtual:build-time';
 
 
 /**
@@ -16,9 +17,7 @@ export const useBuildTimestamp = () => {
    */
   const getFormattedBuildTime = React.useCallback(() => {
     try {
-      if (typeof getBuildTime !== 'function') return;
-
-      const time: number = getBuildTime();
+      const time = Number(process.env.BUILD_TIME);
       if (!time) return;
 
       return formatDistance(new Date(time), new Date(), {

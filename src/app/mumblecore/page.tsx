@@ -1,14 +1,14 @@
+'use client';
+
 import { Row, Col } from 'react-bootstrap';
 
-import { routes } from 'routes';
 
-
-export const Page1 = () => {
+export default function MumblecorePage() {
   return (
     <Row className="mt-4">
       <Col xs="12">
         <h1 className="mb-4">
-          {routes.get('page1').label}
+          Mumblecore
         </h1>
         <p>
           Craft beer chia blue bottle yr meh fanny pack williamsburg. Sartorial artisan intelligentsia
@@ -37,4 +37,4 @@ export const Page1 = () => {
       </Col>
     </Row>
   );
-};
+}

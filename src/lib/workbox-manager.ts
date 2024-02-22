@@ -1,5 +1,9 @@
+'use client';
+
 /**
  * ----- Workbox Event Emitter -------------------------------------------------
+ *
+ * NOTE: THIS IS NOT CURRENTLY IN USE WITH NEXT.
  *
  * This module exports a factory that accepts a Workbox registration function
  * (as provided by vite-plugin-pwa) and returns a service worker API object
@@ -25,8 +29,10 @@ import { getPlatformDetails } from '@darkobits/tsx/lib/runtime';
 import Emittery from 'emittery';
 import pRetry, { FailedAttemptError } from 'p-retry';
 
-import type { registerSW } from 'virtual:pwa-register';
+// import type { registerSW } from 'virtual:pwa-register';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const registerSW = (opts: any) => async (reload: boolean) => true;
 
 type RegistrationFn = typeof registerSW;
 
@@ -302,9 +308,11 @@ export default function WorkboxManagerFactory(registrationFn: RegistrationFn, op
 
           void emitter.emit('offline-ready');
         },
+        // @ts-expect-error
         onRegisterError: err => {
           void emitter.emit('registration:error', { err });
         },
+        // @ts-expect-error
         onRegistered: registration => {
           if (!registration) return;
           void emitter.emit('registration:success');

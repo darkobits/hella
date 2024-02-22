@@ -27,7 +27,7 @@ export function useSymbolQuote(symbol: string, config: Partial<UseQueryOptions<S
   const query = useQuery<SymbolResponse>({
     queryKey: ['quote', { symbol }],
     queryFn: createQueryFn('quote', { symbol }),
-    // The time in milliseconds after data is considered stale. If set to
+    // The time in milliseconds after which data is considered stale. If set to
     // Infinity, the data will never be considered stale.
     staleTime: ms('10 seconds'),
     retry: false,

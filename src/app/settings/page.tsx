@@ -1,13 +1,12 @@
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
+'use client';
+
+import { Col, Row, Table } from 'react-bootstrap';
 
 import { useBuildTimestamp } from 'hooks/use-build-timestamp';
 import { useNetworkState } from 'hooks/use-network-state';
-import { routes } from 'routes';
 
 
-export const Settings = () => {
+export default function Settings() {
   const buildTime = useBuildTimestamp();
   const networkState = useNetworkState();
 
@@ -15,18 +14,17 @@ export const Settings = () => {
     <Row className="mt-4">
       <Col xs={12}>
         <h1 className="mb-4">
-          {routes.get('settings').label}
+          Settings
         </h1>
       </Col>
-      <Col xs={12} sm={{ span: 8, offset: 2 }}>
-        <Table
-          bordered
-          hover
-          variant="dark"
-        >
+      <Col
+        xs={12}
+        sm={{ span: 8, offset: 2 }}
+      >
+        <Table bordered hover>
           <thead>
             <tr>
-              <td className="bg-dark" colSpan={2}>
+              <td colSpan={2}>
                 <strong>Diagnostics</strong>
               </td>
             </tr>
@@ -51,4 +49,4 @@ export const Settings = () => {
       </Col>
     </Row>
   );
-};
+}

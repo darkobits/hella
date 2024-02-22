@@ -6,17 +6,30 @@
     "baseUrl": "src",
     "outDir": "dist",
     "esModuleInterop": true,
+    "noEmit": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "types": [
       "node",
-      "vite/client",
-      "unplugin-icons/types/react",
-      "vite-plugin-pwa/client",
-      "vite-plugin-svgr/client"
+      "unplugin-icons/types/react"
     ]
   },
   "include": [
+    ".eslintrc.cjs",
     "src",
     "nr.config.ts",
-    "vite.config.ts"
+    "next.config.js",
+    "vite.config.ts",
+    ".next/types/**/*.ts",
+    "dist/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

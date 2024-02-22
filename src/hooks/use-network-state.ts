@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 
@@ -6,7 +8,7 @@ import React from 'react';
  * connection and `false` if not.
  */
 export function useNetworkState() {
-  const [networkState, setNetworkState] = React.useState(navigator.onLine);
+  const [networkState, setNetworkState] = React.useState(false);
 
   React.useEffect(() => {
     const handleOnline = () => {
@@ -19,6 +21,8 @@ export function useNetworkState() {
 
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
+
+    setNetworkState(navigator.onLine);
 
     return () => {
       window.removeEventListener('online', handleOnline);
