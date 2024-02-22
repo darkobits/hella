@@ -30,6 +30,7 @@ export interface RouteConfig {
   /**
    * Function that renders the icon to use for the route.
    */
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Icon: (...props: Array<any>) => JSX.Element;
 }
 

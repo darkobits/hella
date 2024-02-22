@@ -1,5 +1,4 @@
 import { ReactQueryDevtools as Devtools } from '@tanstack/react-query-devtools';
-import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 

@@ -1,6 +1,5 @@
 import { isMobile } from '@darkobits/tsx/lib/runtime';
 import cx from 'classnames';
-import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Col from 'react-bootstrap/Col';
@@ -48,7 +47,7 @@ export const Home = ({ useRouteConfig }: RouteProps) => {
           {/* Jumbotron Buttons */}
           <ButtonGroup className="mt-2">
             <Button
-              // @ts-expect-error; "as" works, but doesn't like this component.
+              // @ts-ignore
               as={Link}
               to={useRouteConfig('page1').path}
               variant="light"
@@ -58,9 +57,9 @@ export const Home = ({ useRouteConfig }: RouteProps) => {
               {useRouteConfig('page1').label}
             </Button>
             <Button
-              // @ts-expect-error; "as" works, but doesn't like this component.
+              // @ts-ignore
               as={Link}
-              to={`/${ids.getFor(int++)}`}
+              to={`/${ids.getFor(int += 1)}`}
               variant="secondary"
               size={isMobile() ? 'sm' : 'lg'}
               className="mr-3"

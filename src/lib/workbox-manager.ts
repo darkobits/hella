@@ -7,6 +7,18 @@
  * that regularly checks for updates and emits related events.
  *
  * TODO: Move to own package.
+ *
+ * Note: To support installing the new service worker and update assets when the
+ * user performs a soft-reload of the page:
+ *
+ * ```
+ * window.addEventListener('beforeunload', () => {
+ *   console.debug('[ServiceWorker] Installing new service worker...');
+ *   void updateSW();
+ * });
+ * ```
+ *
+ * This should be added here.
  */
 import sleep from '@darkobits/sleep';
 import { getPlatformDetails } from '@darkobits/tsx/lib/runtime';
@@ -171,7 +183,7 @@ export interface WorkboxManagerOptions {
  * Provided a Workbox registration function, returns an Emittery event emitter
  * with
  */
-export default function WorkboxManager(registrationFn: RegistrationFn, opts: WorkboxManagerOptions = {}) {
+export default function WorkboxManagerFactory(registrationFn: RegistrationFn, opts: WorkboxManagerOptions = {}) {
   // Read options and assign defaults.
   const updateCheckInterval = opts.updateCheck?.interval ?? 10_000;
   const updateCheckFactor = opts.updateCheck?.factor ?? 1;

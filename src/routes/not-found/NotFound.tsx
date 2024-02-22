@@ -1,4 +1,3 @@
-import React from 'react';
 import Stack from 'react-bootstrap/Stack';
 import { Img } from 'react-image';
 

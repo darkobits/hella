@@ -1,5 +1,4 @@
 import cx from 'classnames';
-import React from 'react';
 import Toast from 'react-bootstrap/Toast';
 import toast, { useToaster } from 'react-hot-toast/headless';
 

@@ -1,16 +1,17 @@
 import path from 'node:path';
 
+import { interopImportDefault } from '@darkobits/interop-import-default';
 import { vite } from '@darkobits/tsx';
 import { faviconsPlugin } from '@darkobits/vite-plugin-favicons';
 import { visualizer } from 'rollup-plugin-visualizer';
 import iconsPlugin from 'unplugin-icons/vite';
-import fontsPlugin from 'vite-plugin-fonts';
+import fontsPluginImport from 'vite-plugin-fonts';
 import { VitePWA } from 'vite-plugin-pwa';
 
 import type { PluginOption } from 'vite';
 
-// N.B. This package's default export is currently broken.
-// const fontsPlugin = Reflect.get(_fontsPlugin, 'default') as typeof _fontsPlugin;
+
+const fontsPlugin = interopImportDefault(fontsPluginImport);
 
 
 /**
@@ -19,7 +20,7 @@ import type { PluginOption } from 'vite';
  */
 function buildTimePlugin(): PluginOption {
   const virtualModuleId = 'virtual:build-time';
-  const resolvedVirtualModuleId = '\0' + virtualModuleId;
+  const resolvedVirtualModuleId = `\0${virtualModuleId}`;
 
   return {
     name: 'build-time-plugin',
@@ -48,15 +49,16 @@ function buildTimePlugin(): PluginOption {
         data: Date.now()
       });
     }
-  }
-};
+  };
+}
 
 
-export default vite(({ config, pkg, mode, ms, manualChunks }) => {
+export default vite.react(({ config, mode, ms, manualChunks, packageJson, root }) => {
+  // TODO: Might be able to remove these.
   config.define = {
     ...config.define,
-    'import.meta.env.DESCRIPTION': `"${pkg.json.description}"`,
-    'import.meta.env.VERSION': `"${pkg.json.version}"`,
+    'import.meta.env.DESCRIPTION': `"${packageJson.description}"`,
+    'import.meta.env.VERSION': `"${packageJson.version}"`
   };
 
   // Code splitting.
@@ -79,27 +81,25 @@ export default vite(({ config, pkg, mode, ms, manualChunks }) => {
 
   config.plugins.push(buildTimePlugin());
 
-  // reconfigurePlugin(config)(buildTimePlugin());
-
   config.plugins.push(faviconsPlugin({
     appName: 'Hella',
-    version: pkg.json.version,
-    appDescription: pkg.json.description,
+    version: packageJson.version,
+    appDescription: packageJson.description,
     developerName: 'darkobits',
     developerURL: 'https://github.com/darkobits',
     icons: {
       favicons: {
-        source: path.resolve(pkg.rootDir, 'src', 'assets', 'favicon.png')
+        source: path.resolve(root, 'src', 'assets', 'favicon.png')
       },
       appleIcon: {
-        source: path.resolve(pkg.rootDir, 'src', 'assets', 'favicon.png')
+        source: path.resolve(root, 'src', 'assets', 'favicon.png')
       },
       appleStartup: {
-        source: path.resolve(pkg.rootDir, 'src', 'assets', 'favicon.png'),
+        source: path.resolve(root, 'src', 'assets', 'favicon.png'),
         background: '#121416'
       },
       android: {
-        source: path.resolve(pkg.rootDir, 'src', 'assets', 'favicon.png')
+        source: path.resolve(root, 'src', 'assets', 'favicon.png')
       }
     }
   }));
@@ -124,27 +124,28 @@ export default vite(({ config, pkg, mode, ms, manualChunks }) => {
     filename: 'service-worker.js',
     manifest: {
       name: 'Hella',
-      description: pkg.json.description,
+      description: packageJson.description,
       display: 'standalone',
-      background_color: '#17191B',
+      background_color: '#17191B'
       // Note: This will be the background color of the notched area on Apple
       // devices with them.
       // theme_color: '#17191B'
     },
     injectRegister: null,
+    registerType: 'prompt',
     workbox: {
       // Instruct Workbox to pre-cache all static assets in the build.
       globPatterns: [
         '**'
       ],
       globIgnores: [
-        '**\/node_modules\/**\/*',
-        '**\/apple-touch-*',
-        '**\/android-chrome-*',
-        '**\/firefox_app_*',
-        '**\/favicon-*'
+        '**/node_modules/**/*',
+        '**/apple-touch-*',
+        '**/android-chrome-*',
+        '**/firefox_app_*',
+        '**/favicon-*'
       ],
-      cacheId: pkg.json.displayName,
+      cacheId: packageJson.displayName,
       runtimeCaching: [{
         // The StaleWhileRevalidate strategy tells Workbox to serve the cached
         // asset while it tries to fetch a newer version.
@@ -160,7 +161,7 @@ export default vite(({ config, pkg, mode, ms, manualChunks }) => {
           // If a network request fails, allow Workbox to replay the request
           // when connectivity has been restored.
           backgroundSync: {
-            name: `${pkg.json.displayName.toLowerCase()}-background-sync-queue`,
+            name: `${packageJson.displayName.toLowerCase()}-background-sync-queue`,
             options: {
               maxRetentionTime: ms('20 seconds')
             }

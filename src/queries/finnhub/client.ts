@@ -11,6 +11,7 @@ import axios from 'axios';
  */
 const BASE_URL = 'https://finnhub.io/api/v1';
 
+
 /**
  * Our FinnHub API key.
  */
@@ -42,8 +43,8 @@ export const createQueryFn = (path: string, params?: Record<string, any>) => {
       });
 
       return response.data;
-    } catch (err) {
-      console.error(`[query] Error fetching ${path}:`, err);
+    } catch (err: any) {
+      console.error(`[query] Error fetching ${path}:`, err.message, { cause: err });
       throw err;
     }
   };

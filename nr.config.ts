@@ -1,13 +1,16 @@
-import { nr } from '@darkobits/tsx';
+import defineConfig from '@darkobits/nr';
+import { defaultPackageScripts } from '@darkobits/tsx';
 
-export default nr(({ command, script }) => {
-  script('tunnel', {
-    group: 'Other',
-    description: 'Start a local server and public HTTPS tunnel.',
-    run: [
-      command('serve', ['./scripts/dist/bin/serve-ngrok.js', ['dist']], {
-        // Options here.
+export default defineConfig([
+  defaultPackageScripts,
+  ({ command, script }) => {
+    script('tunnel', [
+      command.node('./scripts/dist/bin/serve-ngrok.js', {
+        args: 'dist'
       })
-    ]
-  });
-});
+    ], {
+      group: 'Other',
+      description: 'Start a local server and public HTTPS tunnel.'
+    });
+  }
+]);

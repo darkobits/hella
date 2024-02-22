@@ -1,5 +1,3 @@
-import React from 'react';
-
 import classes from './ErrorBoundaryFallback.css';
 
 import type { FallbackProps } from 'react-error-boundary';

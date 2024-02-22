@@ -5,7 +5,6 @@
  * This module is responsible for defining how the application should respond to
  * various service worker-related lifecycle events.
  */
-import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { registerSW } from 'virtual:pwa-register';
 

@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.css';
-
 import 'etc/global-styles.css';
 import 'etc/workbox-event-handlers';
 
@@ -8,7 +7,6 @@ import {
   isStandalone,
   render
 } from '@darkobits/tsx/lib/runtime';
-import React from 'react';
 
 import { App } from 'components/App';
 
